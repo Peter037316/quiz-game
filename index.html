@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知识问答游戏 Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 背景装饰 -->
+    <div class="bg-gradient"></div>
+
+    <!-- 主容器 -->
+    <div class="app-container">
+        <!-- 游戏开始页 -->
+        <div class="page start-page active" id="startPage">
+            <div class="start-card">
+                <div class="game-icon">🎯</div>
+                <h1>知识问答游戏</h1>
+                <p class="subtitle">挑战你的知识储备,共 10 道题</p>
+
+                <div class="difficulty-select">
+                    <label>选择难度:</label>
+                    <div class="difficulty-btns">
+                        <button class="diff-btn easy active" data-diff="easy">简单</button>
+                        <button class="diff-btn medium" data-diff="medium">中等</button>
+                        <button class="diff-btn hard" data-diff="hard">困难</button>
+                    </div>
+                </div>
+
+                <div class="category-select">
+                    <label>选择分类:</label>
+                    <select id="categorySelect" class="category-select">
+                        <option value="all">全部分类</option>
+                        <option value="science">科学技术</option>
+                        <option value="history">历史文化</option>
+                        <option value="geography">地理知识</option>
+                        <option value="sports">体育娱乐</option>
+                    </select>
+                </div>
+
+                <button class="start-btn" id="startBtn">
+                    <span>开始游戏</span>
+                    <span class="btn-icon">🚀</span>
+                </button>
+
+                <p class="tips">💡 提示:每道题限时 15 秒,答对加分!</p>
+            </div>
+        </div>
+
+        <!-- 游戏进行页 -->
+        <div class="page quiz-page" id="quizPage">
+            <div class="quiz-header">
+                <div class="stat-box">
+                    <span class="stat-label">得分</span>
+                    <span class="stat-value" id="scoreDisplay">0</span>
+                </div>
+                <div class="progress-box">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span class="progress-text" id="progressText">1 / 10</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">时间</span>
+                    <span class="stat-value" id="timerDisplay">15</span>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-tag" id="questionTag">科学技术</div>
+                <h2 class="question-text" id="questionText">加载中...</h2>
+                <div class="options-list" id="optionsList"></div>
+            </div>
+
+            <!-- 倒计时进度条 -->
+            <div class="timer-bar">
+                <div class="timer-fill" id="timerFill"></div>
+            </div>
+        </div>
+
+        <!-- 结果页 -->
+        <div class="page result-page" id="resultPage">
+            <div class="result-card">
+                <div class="result-icon" id="resultIcon">🎉</div>
+                <h2 class="result-title" id="resultTitle">游戏结束!</h2>
+
+                <div class="score-circle">
+                    <svg viewBox="0 0 120 120">
+                        <circle class="score-bg" cx="60" cy="60" r="54"></circle>
+                        <circle class="score-fill" id="scoreFill" cx="60" cy="60" r="54"></circle>
+                    </svg>
+                    <div class="score-text">
+                        <span class="score-num" id="finalScore">0</span>
+                        <span class="score-total">/ 100</span>
+                    </div>
+                </div>
+
+                <div class="result-stats">
+                    <div class="result-stat">
+                        <span class="stat-num correct" id="correctCount">0</span>
+                        <span class="stat-name">答对</span>
+                    </div>
+                    <div class="result-stat">
+                        <span class="stat-num wrong" id="wrongCount">0</span>
+                        <span class="stat-name">答错</span>
+                    </div>
+                    <div class="result-stat">
+                        <span class="stat-num time" id="totalTime">0s</span>
+                        <span class="stat-name">用时</span>
+                    </div>
+                </div>
+
+                <p class="result-message" id="resultMessage"></p>
+
+                <div class="result-actions">
+                    <button class="action-btn secondary" id="reviewBtn">查看答案</button>
+                    <button class="action-btn primary" id="restartBtn">再来一局</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 答案回顾弹窗 -->
+        <div class="modal-overlay" id="reviewModal">
+            <div class="modal-content review-content">
+                <div class="modal-header">
+                    <h3>答案回顾</h3>
+                    <button class="close-btn" id="closeReview">✕</button>
+                </div>
+                <div class="review-list" id="reviewList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
